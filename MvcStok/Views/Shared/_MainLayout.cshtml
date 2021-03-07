@@ -1,0 +1,97 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Stok Takip Uygulaması</a>
+            </div>
+            <ul class="nav navbar-nav">
+
+                <li>@Html.ActionLink("Kategoriler", "Index", "Kategori")</li>
+                <li>@Html.ActionLink("Ürünler", "Index", "Urun")</li>
+                <li>@Html.ActionLink("Müşteriler", "Index", "Musteri")</li>
+                <li>@Html.ActionLink("Satışlar", "Index", "Satıs")</li>
+                <li>@Html.ActionLink("Raporlar", "Index", "Raporlama")</li>
+
+
+
+            </ul>
+
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                    @if (Session["Name"] != null)
+                    {
+                        var name = Session["Name"].ToString();
+                        @Html.ActionLink(name, "Index", "User")
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Log In", "Login", "User")
+                    }
+                </li>
+            </ul>
+
+            @* Burada eğer istenirse menuyu dropdown olarak göstermemize yarayan kod satırları vardır.*@
+
+            @*<li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                Admin Panel
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Page 1-1</a></li>
+                <li><a href="#">Page 1-2</a></li>
+                <li><a href="#">Page 1-3</a></li>
+            </ul>
+        </li>*@
+
+            @*<li>@Html.ActionLink("Çıkış yap","Index","User")</li>*@
+
+            @* <li><a href="#">Satışlar</a></li>*@
+
+            @*<li class="">
+                @if (Session["Name"] != null)
+                {
+                    var name = Session["Name"].ToString();
+                    @Html.ActionLink(name, "Index", "User")
+                }
+                else
+                {
+                    @Html.ActionLink("Log In", "Login", "User")
+                }
+            </li>
+        </ul>*@
+
+
+
+
+
+
+
+
+        </div>
+    </nav>
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
+</body>
+</html>
+

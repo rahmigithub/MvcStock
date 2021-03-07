@@ -1,0 +1,62 @@
+﻿@model MvcStok.Models.Entity.TBLMUSTERILER
+@{
+    ViewBag.Title = "MusteriGetir";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@*NOT: Yoruma alına kısımlar Javascript ile doğrulama yapılabilmesi için.*@
+
+
+@using (Html.BeginForm("Guncelle", "Musteri", FormMethod.Post))
+{
+
+<div class="form-group">
+    <label>Musteri Id</label>
+    @Html.TextBoxFor(m => m.MUSTERIID, new { @class = "form-control" })
+
+    <br />
+    <label>Musteri Adı</label>
+    @Html.TextBoxFor(m => m.MUSTERIAD, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.MUSTERIAD, "", new { @style = "color:red" })
+
+    <label>Musteri SoyAdı</label>
+    @Html.TextBoxFor(m => m.MUSTERISOYAD, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.MUSTERISOYAD, "", new { @style = "color:red" })
+
+
+    @if (Model.isActive == false)
+    {
+        <br />
+        <label>Urun Aktif</label>
+
+
+        <div class="form-control">
+            Evet
+            @Html.RadioButtonFor(m => m.isActive, true)
+            Hayır
+            @Html.RadioButtonFor(m => m.isActive, false)
+        </div>
+
+    }
+
+</div>
+
+    <div>
+
+        <button id="musguncelle" class="btn btn-warning"  onclick="javascript: return guncelle();">Guncelle</button>
+    </div>
+
+}
+<script type="text/javascript">
+
+    function guncelle() {
+
+        var ok = confirm("Guncellemek istiyormusunuz?");
+        if (ok == true) {
+            return true;
+        }
+        return false;
+    }
+
+</script>
+

@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<h2>Index</h2>
+<div class="card-body">
+    @if (Session["Name"] != null)
+    {
+        <p>Hoşgeldiniz : @Session["Name"].ToString()</p>
+        <a href="@Url.Action("Logout","User")" class="btn btn-warning">Çıkış</a>
+      }
+</div>

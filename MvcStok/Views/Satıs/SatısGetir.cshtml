@@ -1,0 +1,56 @@
+﻿@model MvcStok.Models.Entity.TBLSATISLAR
+
+@{
+    ViewBag.Title = "SatısGetir";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>SatısGetir</h2>
+@using (Html.BeginForm("Guncelle", "Satıs", FormMethod.Post))
+{
+
+<div class="form-group">
+    <label>Satıs Id</label>
+    @Html.TextBoxFor(m => m.SATISID, new { @class = "form-control", @ReadOnly = true })
+
+    <br />
+    <label>Urun Ad</label>
+    @Html.DropDownListFor(x => x.URUN, (List<SelectListItem>)ViewBag.urunler, new { @class = "form-control" })
+
+
+    <br />
+    <label>Musteri</label>
+    @Html.DropDownListFor(x => x.MUSTERI, (List<SelectListItem>)ViewBag.musteriler, new { @class = "form-control" })
+
+
+    <br />
+    <label>Adet</label>
+    @Html.TextBoxFor(x => x.ADET, new { @class = "form-control" })
+
+
+    <br />
+    <label>Satıs Durum</label>
+    @Html.DropDownListFor(x => x.DURUM, (List<SelectListItem>)ViewBag.satısdurum, new { @class = "form-control" })
+
+
+</div>
+
+    <div>
+
+        <button id="urungncelle" class="btn btn-warning" onclick="javascript: return guncelle();">Guncelle</button>
+    </div>
+
+}
+*
+<script type="text/javascript">
+
+    function guncelle() {
+
+        var ok = confirm("Guncellemek istiyormusunuz?");
+        if (ok == true) {
+            return true;
+        }
+        return false;
+    }
+
+</script>

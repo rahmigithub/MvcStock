@@ -1,0 +1,43 @@
+﻿@model MvcStok.Models.Entity.TBLSATISLAR
+
+@{
+    ViewBag.Title = "YeniSatıs";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@if (TempData["Message"] != null)
+{
+    @Html.Raw(TempData["Message"])
+}
+
+<form class="form-group" method="post">
+
+    <div>
+
+
+        <label>Urunler</label>
+        @Html.DropDownListFor(x => x.URUN, (List<SelectListItem>)ViewBag.urunler, new { @class = "form-control" })
+
+        <br />
+
+        <label>Musteri</label>
+        @Html.DropDownListFor(x => x.MUSTERI, (List<SelectListItem>)ViewBag.musteriler, new { @class = "form-control" })
+
+        <br />
+
+        <label>Adet</label>
+        @Html.TextBoxFor(x => x.ADET, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.ADET, "", new { @style = "color:red" })
+        <br />
+
+
+
+
+    </div>
+    <div style="margin-top:15px">
+
+        <button class="btn btn-info">Satış Ekle</button>
+    </div>
+
+</form>
+

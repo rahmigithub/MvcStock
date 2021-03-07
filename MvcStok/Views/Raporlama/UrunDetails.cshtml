@@ -1,0 +1,58 @@
+﻿@model IEnumerable<MvcStok.Models.Entity.TBLSATISLAR>
+
+    @{
+        ViewBag.Title = "UrunDetails";
+        Layout = "~/Views/Shared/_MainLayout.cshtml";
+    }
+
+    <h4>
+        Urun :  @ViewBag.urun
+    </h4>
+    <table class="table">
+        <tr>
+            <th>
+                @* @Html.DisplayNameFor(model => model.ADET)*@
+                Adet
+            </th>
+            <th>
+                Alınan Ödeme
+            </th>
+            <th>
+                @* @Html.DisplayNameFor(model => model.DURUM)*@
+                Durum
+            </th>
+            <th>
+                @* @Html.DisplayNameFor(model => model.TBLURUNLER.URUNAD)*@
+                Marka
+            </th>
+            <th>
+                @* @Html.DisplayNameFor(model => model.TBLURUNLER.URUNAD)*@
+                Musteri
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ADET)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FIYAT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DURUM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TBLURUNLER.MARKA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TBLMUSTERILER.MUSTERIAD)
+            @Html.DisplayFor(modelItem => item.TBLMUSTERILER.MUSTERISOYAD)
+        </td>
+
+    </tr>
+        }
+
+    </table>

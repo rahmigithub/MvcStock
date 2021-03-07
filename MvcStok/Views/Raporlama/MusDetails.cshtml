@@ -1,0 +1,56 @@
+﻿@model IEnumerable<MvcStok.Models.Entity.TBLSATISLAR>
+
+@{
+    ViewBag.Title = "MusDetails";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+
+   
+}
+
+
+
+<h4>
+   Müşteri :  @ViewBag.musteri
+</h4>
+<table class="table">
+    <tr>
+        <th>
+           @* @Html.DisplayNameFor(model => model.ADET)*@
+            Adet
+        </th>
+        <th>
+            Alınan Ödeme
+        </th>
+        <th>
+           @* @Html.DisplayNameFor(model => model.DURUM)*@
+            Durum
+        </th>
+        
+        <th>
+            @*@Html.DisplayNameFor(model => model.TBLURUNLER.URUNAD)*@
+            Urun
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ADET)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FIYAT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DURUM)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.TBLURUNLER.URUNAD)
+        </td>
+       
+    </tr>
+}
+    
+</table>
+

@@ -1,0 +1,57 @@
+﻿@model MvcStok.Models.Entity.TBLKATEGORILER
+@{
+    ViewBag.Title = "KategoriGetir";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("Guncelle", "Kategori", FormMethod.Post)) { 
+
+<div class="form-group">
+    <label>Kategori Id</label>
+    @Html.TextBoxFor(m => m.KATEGORIID, new { @class = "form-control", @ReadOnly = true })
+
+    <br />
+    <label>Kategori Ad</label>
+    @Html.TextBoxFor(x => x.KATEGORIAD, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.KATEGORIAD, "", new { @style = "color:red" })
+
+
+    <br />
+    @if (Model.isActive == false)
+    {
+        <br />
+        <label>Urun Aktif</label>
+
+
+        <div class="form-control">
+            Evet
+            @Html.RadioButtonFor(m => m.isActive, true)
+            Hayır
+            @Html.RadioButtonFor(m => m.isActive, false)
+        </div>
+
+    }
+</div>
+
+<div>
+
+    <button id="ktgrgncelle" class="btn btn-warning" onclick="javascript: return guncelle();">Guncelle</button>
+</div>
+
+}
+
+<script type="text/javascript">
+
+    function guncelle() {
+
+        var ok = confirm("Guncellemek istiyormusunuz?");
+        if (ok == true) {
+            return true;
+        }
+        return false;
+    }
+  
+
+</script>
+

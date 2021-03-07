@@ -1,0 +1,28 @@
+﻿@using MvcStok.Models.Entity
+@model MvcStok.Models.Entity.TBLUSER
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h3>Giriş Sayfası</h3>
+
+@using (Html.BeginForm("Login", "User", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+       @* @Html.LabelFor(m => m.USERNAME)*@
+        Kullanıcı Adı
+        @Html.TextBoxFor(m => m.USERNAME, "", new { @class = "form-control", @placeholder = "Kullanıcı Adı" })
+
+    </div>
+    <div class="form-group">
+       @* @Html.LabelFor(m => m.USERPASSWORD)*@
+        Password
+        @Html.PasswordFor(m => m.USERPASSWORD, new { @class = "form-control", @placeholder = "Password" })
+    </div>
+    <div class="form-group">
+        <input type="submit" name="submit" class="btn btn-primary" value="Giriş Yap" />
+    </div>
+}

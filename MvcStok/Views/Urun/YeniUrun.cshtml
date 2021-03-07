@@ -1,0 +1,45 @@
+﻿@model MvcStok.Models.Entity.TBLURUNLER
+@{
+    ViewBag.Title = "YeniUrun";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+
+    <div>
+
+        <label>Urun Adı</label>
+        @Html.TextBoxFor(x => x.URUNAD, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.URUNAD, "", new { @style = "color:red" })
+        <br />
+
+
+        <label>Marka</label>
+        @Html.TextBoxFor(x => x.MARKA, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.MARKA, "", new { @style = "color:red" })
+
+        <br />
+
+        <label>Urun Kategori</label>
+        @Html.DropDownListFor(x => x.URUNKATEGORI, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+
+        <label>Fiyat</label>
+        @Html.TextBoxFor(x => x.FIYAT, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.FIYAT, "", new { @style = "color:red" })
+        <br />
+
+        <label>Stok</label>
+        @Html.TextBoxFor(x => x.STOK, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.STOK, "", new { @style = "color:red" })
+        <br />
+
+
+
+    </div>
+    <div style="margin-top:15px">
+
+        <button id="urunEkle" class="btn btn-info">Urun Ekle</button>
+    </div>
+
+</form>
+

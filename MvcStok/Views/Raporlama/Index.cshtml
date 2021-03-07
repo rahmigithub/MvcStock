@@ -1,0 +1,172 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+
+}
+
+
+<form id="myForm" action="one" method="post">
+    <label for="aa">Musteri</label>
+    <input type="radio" name="cardType" id="one" class="css-checkbox" value="aa" checked>
+    <label for="bb">Urun</label>
+    <input type="radio" name="cardType" id="two" class="css-checkbox" value="bb">
+    <label for="cc">Satış Durum</label>
+    <input type="radio" name="cardType" id="three" class="css-checkbox" value="cc">
+
+    <div id="a">
+        <table id="tbl1" class="table table-bordered">
+
+            <thead>
+
+                <tr>
+                    <th>MUSTERIID</th>
+                    <th>MUSTERIAD</th>
+                    <th>MUSTERISOYAD</th>
+                    <th>SATIŞ RAPOR</th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var must in ViewBag.musteriler)
+                {
+                    <tr>
+                        @if (must.isActive == false)
+                        {
+                            <td style="background-color:lightcoral">@must.MUSTERIID</td>
+
+                        }
+                        else
+                        {
+                            <td>@must.MUSTERIID</td>
+                        }
+                        <td>@must.MUSTERIAD</td>
+                        <td>@must.MUSTERISOYAD</td>
+
+                        <td><a href="/Raporlama/MusDetails/@must.MUSTERIID" class="btn btn-success">Satış Detayını Gör</a></td>
+                    </tr>
+                }
+
+
+
+            </tbody>
+
+        </table>
+    </div>
+
+    <div id="b">
+        <table id="tbl1" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>URUN İD</th>
+                    <th>URUN ADI</th>
+                    <th>MARKA</th>
+                    <th>URUNKATEGORI</th>
+                    <th>FIYAT</th>
+                    <th>STOK</th>
+                    <th>SATIS RAPOR</th>
+
+                </tr>
+
+            </thead>
+            <tbody>
+
+                @foreach (var urn in ViewBag.urunler)
+                {
+                    <tr>
+                        @if (urn.isActive == false)
+                        {
+                            <td style="background-color:lightcoral">@urn.URUNID</td>
+                        }
+                        else
+                        {
+                            <td>@urn.URUNID</td>
+                        }
+                        <td>@urn.URUNAD</td>
+                        <td>@urn.MARKA</td>
+                        <td>@urn.TBLKATEGORILER.KATEGORIAD</td>
+                        <td>@urn.FIYAT</td>
+                        <td>@urn.STOK</td>
+                        <td><a href="/Raporlama/UrunDetails/@urn.URUNID" class="btn btn-success">Satış Detayını Gör</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div id="c">
+        <table id="tbl1" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Durum İD</th>
+                    <th>Durum Çeşidi</th>
+                    <th>Satış Rapor</th>
+                </tr>
+
+            </thead>
+            <tbody>
+
+                @foreach (var satısdurum in ViewBag.satısdurumlar)
+                {
+                    <tr>
+
+                        <td>@satısdurum.SATISDURUMID</td>
+                        <td>@satısdurum.SATISDURUMAD</td>
+                        <td><a href="/Raporlama/SatısDurumDetails/@satısdurum.SATISDURUMID" class="btn btn-success">Satış Detayını Gör</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</form>
+
+
+
+
+
+
+
+
+<style type="text/css">
+    #b {
+        display: none;
+    }
+
+    #c {
+        display: none;
+    }
+</style>
+
+
+
+
+<script language="javascript" type="text/javascript">
+
+    $(document).ready(function () {
+        $(".css-checkbox").click(function () {
+            if ($(this).attr('id') == "one") {
+                $('#a').show();
+                $('#b').hide();
+                $('#c').hide();
+                $("#myForm").attr('action', 'one');
+            } else if ($(this).attr('id') == "two") {
+                $('#a').hide();
+                $('#b').show();
+                $('#c').hide();
+                $("#myForm").attr('action', 'two');
+            } else if ($(this).attr('id') == "three") {
+                $('#a').hide();
+                $('#b').hide();
+                $('#c').show();
+                $("#myForm").attr('action', 'three');
+            }
+        });
+
+    });
+
+
+
+
+</script>
+

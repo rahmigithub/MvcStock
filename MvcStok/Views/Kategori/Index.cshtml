@@ -1,0 +1,99 @@
+﻿@*@model List<TBLKATEGORILER>*@
+@using MvcStok.Models.Entity
+@using PagedList
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table id="tbl1" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>KATEGORİ İD</th>
+            <th>KATEGORİ ADI</th>
+            <th>SİL</th>
+            <th>GÜNCELLE</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        @foreach (var ktgr in Model)
+        {
+
+        <tr>
+            @if (ktgr.isActive == false)
+            {
+                <td style="background-color:lightcoral">@ktgr.KATEGORIID</td>
+            }
+            else
+            {
+                <td>@ktgr.KATEGORIID</td>
+            }
+            <td>@ktgr.KATEGORIAD</td>
+            <td><a class="btn btn-danger btnKategoriSil" data-id="@ktgr.KATEGORIID">Sil</a></td>
+            <td><a href="/Kategori/KategoriGetir/@ktgr.KATEGORIID" class="btn btn-success">Güncelle</a></td>
+
+
+
+            @*Kategoride silme işlemi ajax ile yaptığım için burayı yorum satırına aldım.*@
+            @*<td><a href="/Kategori/SIL/@ktgr.KATEGORIID" class="btn btn-danger">Sil</a></td>*@
+
+        </tr>
+        }
+    </tbody>
+</table>
+
+<a href="/Kategori/YENIKATEGORI" class="btn btn-primary">YENİ KATEGORİ EKLE</a>
+
+<link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/jq-2.2.4/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/b-1.3.1/b-colvis-1.3.1/b-flash-1.3.1/b-html5-1.3.1/b-print-1.3.1/r-2.1.1/sc-1.4.2/se-1.2.2/datatables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#tbl1').DataTable({
+            language: {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+            }
+        });
+    });
+
+    $(function (){
+        $("#tbl1").on("click", ".btnKategoriSil", function () {
+            if (confirm("Silme işlemini gerçekleştirmek istiyormusuz ? ")) {
+
+                var id = $(this).data("id");
+                var btn = $(this);
+                $.ajax({
+                    type: "Post",
+                    url: "/Kategori/Sil/" + id,
+
+
+                    success: function () {
+
+                        window.location.reload();
+
+                    }
+                    //,
+                    //error : function() {
+
+
+                    //    window.location.reload();
+
+                    //}
+
+
+                });
+
+            }
+
+
+        });
+
+    });
+
+
+
+</script>

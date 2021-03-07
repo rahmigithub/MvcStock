@@ -1,0 +1,47 @@
+﻿@model MvcStok.Models.Entity.TBLKATEGORILER
+
+@{
+    ViewBag.Title = "YeniKategori";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@*NOT: Yoruma alına kısımlar Javascript ile doğrulama yapılabilmesi için.*@
+
+
+<form class="form-group" method="post">
+
+    <div>
+
+        <label>Kategori Adı</label>
+        @*<input type="text" id="ktgrAdi" class="form-control" name="KATEGORIAD" size="10" />*@
+        @Html.TextBoxFor(x=> x.KATEGORIAD, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.KATEGORIAD, "", new { @style = "color:red" })
+
+    </div>
+    <div style="margin-top:15px">
+
+        <button id="kategoriEkle" class="btn btn-info">Kategori Ekle</button>
+    </div>
+
+
+</form>
+
+@*<script type="text/javascript">
+
+    $("#kategoriEkle").on("click", function () {
+        if ($("#ktgrAdi").val() == '') {
+            alert("Lütfen Kategori Adı giriniz");
+
+            return false;
+        }
+
+        else if ($("#ktgrAdi").val().length > 50) {
+            alert("Kategori Adı 50 karakter den büyük olamaz.");
+
+            return false;
+        }
+
+        alert("Kategori kayıt işlemi başarılı");
+    });
+
+</script>*@
